@@ -24,12 +24,19 @@ we won't set that up for you.
 Try to find a clean and readable solution to the problem. 
 
 Bonus points:
-- The class name isn't optimal. Where should availability checking live?
-- How would you model availabilities for different accomodations?
-- How can we consolidate different sources of availability
-  (e.g. external calendars, bookings)?
-- Can you suggest a data structure that's better suited for this kind
-  of query? What if people are looking for any available property, how
-  could you make this perform well?
+- The class name `Availability` isn't optimal. Where would the
+  `#available_between?` method live in a more realistic application?
+  What would be the class name?
+- This example is too simplistic. How would you extend the data model
+  to support more than one accomodation?
+- In a real-world setting there are several sources for availability,
+  e.g. a user might block certain dates on the platform, or some dates
+  are already booked, or the same accomodation might be listed on a
+  competitor's platform and have a booking there. How can we
+  consolidate these different sources of availability? How can we
+  model this so they're easy to combine?
+- Can you suggest a data structure that makes finding available
+  accomodations for a given set of check-in and check-out dates easy
+  and fast? What would be the trade-offs?
 
 That's all. Happy hacking!
