@@ -18,6 +18,18 @@ describe Availability do
       year: 2015, month: 12,
       #      1234567890123456789012345678901
       days: "0000000000000000000111100000000")
+    db[:availabilities].insert(
+      year: 2016, month: 1,
+      #      1234567890123456789012345678901
+      days: "0000000000000000000000000000000")
+    db[:availabilities].insert(
+      year: 2016, month: 2,
+      #      1234567890123456789012345678901
+      days: "0000000000000001000000000000000")
+    db[:availabilities].insert(
+      year: 2016, month: 3,
+      #      1234567890123456789012345678901
+      days: "0000000011111111111111111111111")
   end
 
   subject(:availability) { described_class.new(db) }
@@ -46,5 +58,13 @@ describe Availability do
     it { is_expected.to_not be_available_between(
                           Date.new(2015, 12, 22),
                           Date.new(2016, 1, 2)) }
+
+    it { is_expected.to be_available_between(
+                          Date.new(2015, 12, 26),
+                          Date.new(2016, 2, 2)) }
+
+    it { is_expected.not_to be_available_between(
+                          Date.new(2016, 1, 27),
+                          Date.new(2016, 3, 5)) }
   end
 end
