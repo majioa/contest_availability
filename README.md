@@ -12,16 +12,23 @@ of querying for the availability for a given check-in and check-out
 date. Note that it's totally fine for a guest to check in on the day
 another guest checks out. Therefore check-out dates are not marked as
 "not available" in the days string. Also, it's ok to check out on a
-day that's marked as "not available". We don't handle different
-accommodations here, it's as if there was just one property, for
-simplicity reasons.
+day that's marked as "not available", which would be the day another
+guest is going to check in. When there's no entry in the database for
+a given month the accommodation is available for that time period.
+
+We don't handle different accommodations here, it's as if there was
+just one property, for simplicity reasons.
 
 We've set up some basic infrastructure with rspec, sqlite and the
 sequel gem. Note that the tests are failing. You can use other
 libraries for testing or database access if you wish, it's just that
 we won't set that up for you.
 
-Try to find a clean and readable solution to the problem. 
+You should be able to complete the task in around 1h. If it takes you
+longer, rethink your approach: there might be a simpler way.
+
+But most importantly: TRY TO FIND A CLEAN AND READABLE SOLUTION TO THE
+PROBLEM!
 
 Bonus points:
 - The class name `Availability` isn't optimal. Where would the
