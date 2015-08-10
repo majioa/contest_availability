@@ -1,5 +1,13 @@
-require 'sequel'
-require 'pathname'
+require "sequel"
+require "pathname"
+
+begin
+  require "rspec/core/rake_task"
+  RSpec::Core::RakeTask.new(:spec)
+  task :default => :spec
+rescue LoadError
+end
+
 
 namespace :db do
   desc "Run sequel migrations"

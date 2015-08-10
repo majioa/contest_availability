@@ -20,9 +20,9 @@ We don't handle different accommodations here, it's as if there was
 just one property, for simplicity reasons.
 
 We've set up some basic infrastructure with rspec, sqlite and the
-sequel gem. Note that the tests are failing. You can use other
-libraries for testing or database access if you wish, it's just that
-we won't set that up for you.
+sequel gem. After installing all dependencies you should be able to
+run the tests with either `rake` or `rspec`. Note that they are
+failing.
 
 You should be able to complete the task in around 1h. If it takes you
 longer, rethink your approach: there might be a simpler way.
