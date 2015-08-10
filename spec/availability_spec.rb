@@ -35,36 +35,90 @@ describe Availability do
   subject(:availability) { described_class.new(db) }
 
   describe "#available_between?" do
-    it { is_expected.to be_available_between(
-                          Date.new(2015, 6, 29),
-                          Date.new(2015, 7, 5)) }
+    it {
+      is_expected.to(
+        be_available_between(
+          Date.new(2015, 6, 29),
+          Date.new(2015, 7, 5)))
+    }
 
-    it { is_expected.to_not be_available_between(
-                              Date.new(2015, 6, 28),
-                              Date.new(2015, 7, 5)) }
+    # checkin is blocked
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2015, 6, 28),
+          Date.new(2015, 7, 5)))
+    }
 
-    it { is_expected.to_not be_available_between(
-                              Date.new(2015, 6, 29),
-                              Date.new(2015, 7, 6)) }
+    # checkout is blocked
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2015, 6, 29),
+          Date.new(2015, 7, 6)))
+    }
 
-    it { is_expected.to_not be_available_between(
-                              Date.new(2015, 7, 15),
-                              Date.new(2015, 7, 19)) }
+    # blocked as 2015-07-17 is taken
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2015, 7, 15),
+          Date.new(2015, 7, 19)))
+    }
 
-    it { is_expected.to be_available_between(
-                          Date.new(2015, 12, 24),
-                          Date.new(2016, 1, 2)) }
+    # rolls over to new year
+    it {
+      is_expected.to(
+        be_available_between(
+          Date.new(2015, 12, 24),
+          Date.new(2016, 1, 2)))
+    }
 
-    it { is_expected.to_not be_available_between(
-                          Date.new(2015, 12, 22),
-                          Date.new(2016, 1, 2)) }
+    # checkin is blocked
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2015, 12, 22),
+          Date.new(2016, 1, 2)))
+    }
 
-    it { is_expected.to be_available_between(
-                          Date.new(2015, 12, 26),
-                          Date.new(2016, 2, 2)) }
+    it {
+      is_expected.to(
+        be_available_between(
+          Date.new(2015, 12, 26),
+          Date.new(2016, 2, 2)))
+    }
 
-    it { is_expected.not_to be_available_between(
-                          Date.new(2016, 1, 27),
-                          Date.new(2016, 3, 5)) }
+    # blocked by 2016-02-16
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2016, 1, 27),
+          Date.new(2016, 3, 5)))
+    }
+
+    # takes year between checkin and checkout into account
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2014, 11, 15),
+          Date.new(2017, 1, 15)))
+    }
+
+    # no DB entry for 2015-08, considered to be all available
+    it {
+      is_expected.to(
+        be_available_between(
+          Date.new(2015, 7, 18),
+          Date.new(2015, 8, 2)))
+    }
+
+    # checkin is blocked
+    it {
+      is_expected.to_not(
+        be_available_between(
+          Date.new(2015, 7, 17),
+          Date.new(2015, 8, 2)))
+    }
   end
 end
