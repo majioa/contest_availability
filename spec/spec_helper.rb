@@ -1,5 +1,6 @@
 require 'sequel'
 require 'sequel/extensions/migration'
+require 'pry'
 
 require_relative "../lib/availability"
 

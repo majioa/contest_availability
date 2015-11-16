@@ -32,23 +32,37 @@ PROBLEM!
 
 ## Bonus questions
 
-- The class name `Availability` isn't optimal. Where would the
+- Q: The class name `Availability` isn't optimal. Where would the
   `#available_between?` method live in a more realistic application?
   What would be the class name?
 
-- This example is too simplistic. How would you extend the data model
+  A: It can be a `Room` or even `Bed`, or something what can be shared,
+  may be a `House`
+
+- Q: This example is too simplistic. How would you extend the data model
   to support more than one accommodation?
 
-- In a real-world setting there are several sources for availability,
+  A: That can be an additional fields: count of beds in a room, for room class,
+  a number of a room, an address or just number of a building with a Bed/Room.
+  Also it can include a features for a room like wifi. User who reserved a room =)
+
+- Q: In a real-world setting there are several sources for availability,
   e.g. a user might block certain dates on the platform, or some dates
   are already booked, or the same accommodation might be listed on a
   competitor's platform and have a booking there. How can we
   consolidate these different sources of availability? How can we
   model this so they're easy to combine?
 
-- Can you suggest a data structure that makes finding available
+  A: In the existing model that kinds can be makrd with numbers `2,3. etc`,  that
+  describes a kind of unavaiability
+
+- Q:Can you suggest a data structure that makes finding available
   accommodations for a given set of check-in and check-out dates easy
   and fast? What would be the trade-offs?
+
+  A: not quite understood question what is the data structure? Additional? An other?
+  If another, it can be a bitfields for example for (0/1) kind of availability.
+  Generally the question is too broad.
 
 ## Submitting your work
 
